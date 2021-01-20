@@ -48,7 +48,7 @@ main {
 
 main h2 {
 	color: black;
-	padding-bottom: 30px;
+	padding-bottom: 20px;
 }
 
 li a {
@@ -61,6 +61,7 @@ li a:hover {
 	text-decoration: underline black;
 }
 
+/* FOOTER */
 footer {
 	color: white;
 	background-color: black;
@@ -73,7 +74,7 @@ footer {
 
 nav {
 	display: flex;
-	margin-top: 20px;
+	margin-top: 14px;
 }
 
 nav a {
@@ -86,6 +87,7 @@ nav a:hover {
 	text-decoration: underline;
 }
 
+/* SIZE FOR TABLET */
 @media screen and (max-width: 900px) {
 	header, main, footer {
 		width: 500px;
@@ -96,17 +98,18 @@ nav a:hover {
 	}
 }
 
+/* SIZE FOR PHONE */
 @media screen and (max-width: 650px) {
 	header, main, footer {
-		width: 330px;
+		width: 325px;
 	}
 
 	header {
-		padding: 35px
+		padding: 28px 35px;
 	}
 
 	main {
-		padding: 40px
+		padding: 31px 43px;
 	}
 
 	nav a {
