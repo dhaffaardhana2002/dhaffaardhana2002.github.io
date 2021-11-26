@@ -1,3 +1,3 @@
 # This is my GitHub Page website!
 
-I only use HTML, CSS, and Javascript for making this website. 
+I only use HTML and CSS for making this website. 
