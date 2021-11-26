@@ -1,5 +1,3 @@
-# Hello! Welcome to my GitHub Page!
+# This is my GitHub Page website!
 
-See all my projects below.
-
-- [To-Do List](https://dhaffaardhana2002.github.io/todo-list/)
+I only use HTML, CSS, and Javascript for making this website. 
