@@ -1,0 +1,397 @@
+<html>
+    <head>
+        <title>PT. Hon Chuan Calculation</title>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+		<link rel="stylesheet" href="../style.css">
+        <meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
+        
+    </head>
+    <body>
+        <header>
+			<a href="./">
+				<button class="back"><i class="bi bi-arrow-left"></i></button>
+			</a>
+            <span>Berat OK & Reject CMC-08</span>
+        </header>
+        <main>
+            <div class="location">
+                <p><a href="../">PT. Hon Chuan</a> > <a href="../capshield.html">Cap Shield</a> > <a href="./">CMC-08</a> > Berat OK & Reject</p>
+            </div>
+
+            <p id="satuan_pcs_p"><label for="satuan_pcs">Berat satuan pcs:</label> <input type="number" name="satuan_pcs" id="satuan_pcs" value="10.663"></p>
+
+            <section>
+                <details open>
+                    <summary><strong>Berat OK</strong></summary>
+                    <div>
+                        <label for="ok_pcs">Pcs</label> : <input type="number" name="ok_pcs" id="ok_pcs">
+                        <br>
+                        <label for="ok_kg">Kg</label> : <input type="number" name="ok_kg" id="ok_kg">
+                        <br><br>
+                        <p>HDPE (63,680%) : <span id="ok_hdpe">N/A</span></p>
+                        <p>LDPE (34,380%) : <span id="ok_ldpe">N/A</span></p>
+                        <p>MB Putih (1,480%) : <span id="ok_mbputih">N/A</span></p>
+                        <p>MB Biru (0,460%) : <span id="ok_mbbiru">N/A</span></p>
+                    </div>
+                </details>
+                <details open>
+                    <summary><strong>Berat Reject</strong></summary>
+                    <div>
+                        <label for="reject_kg">Kg</label> : <input type="number" name="reject_kg" id="reject_kg">
+                        <br>
+                        <label for="reject_pcs">Pcs</label> : <input type="number" name="reject_pcs" id="reject_pcs">
+                        <br><br>
+                        <p>HDPE (63,680%) : <span id="reject_hdpe">N/A</span></p>
+                        <p>LDPE (34,380%) : <span id="reject_ldpe">N/A</span></p>
+                        <p>MB Putih (1,480%) : <span id="reject_mbputih">N/A</span></p>
+                        <p>MB Biru (0,460%) : <span id="reject_mbbiru">N/A</span></p>
+                    </div>
+                </details>
+                <details open>
+                    <summary><strong>Berat Lelehan Biru</strong></summary>
+                    <div>
+                        <label for="blue_kg">Kg</label> : <input type="number" name="blue_kg" id="blue_kg">
+                        <br>
+                        <label for="blue_pcs">Pcs</label> : <input type="number" name="blue_pcs" id="blue_pcs">
+                        <br><br>
+                        <p>HDPE (78,430%) : <span id="blue_hdpe">N/A</span></p>
+                        <p>LDPE (19,610%) : <span id="blue_ldpe">N/A</span></p>
+                        <p>MB Biru (1,960%) : <span id="blue_mbbiru">N/A</span></p>
+                    </div>
+                </details>
+                <details>
+                    <summary><strong>Berat Putih (Cap & Lelehan)</strong></summary>
+                    <div>
+                        <div id="cap-lelehan-white">
+                            <div id="cap-white">
+                                <h5>Cap Putih</h5>
+                                <label for="cap_white_kg">Kg</label> : <input type="number" name="cap_white_kg" id="cap_white_kg">
+                                <br>
+                                <label for="cap_white_pcs">Pcs</label> : <input type="number" name="cap_white_pcs" id="cap_white_pcs">
+                            </div>
+                            <div id="lelehan-white">
+                                <h5>Lelehan Putih</h5>
+                                <label for="lelehan_white_kg">Kg</label> : <input type="number" name="lelehan_white_kg" id="lelehan_white_kg">
+                                <br>
+                                <label for="lelehan_white_pcs">Pcs</label> : <input type="number" name="lelehan_white_pcs" id="lelehan_white_pcs">
+                            </div>
+                        </div>
+                        <br>
+                        <h5>Cap & Lelehan Putih</h5>
+                        <p>Kg : <span id="white_kg">N/A</span></p>
+                        <p>Pcs : <span id="white_pcs">N/A</span></p>
+                        <br>
+                        <p>HDPE (58,820%) : <span id="white_hdpe">N/A</span></p>
+                        <p>LDPE (39,220%) : <span id="white_ldpe">N/A</span></p>
+                        <p>MB Putih (1,960%) : <span id="white_mbputih">N/A</span></p>
+                    </div>
+                </details>
+                <details open id="total">
+                    <summary><strong>Total</strong></summary>
+                    <div>
+                        <p>Pcs : <span id="total_pcs">N/A</span></p>
+                        <p>KG : <span id="total_kg">N/A</span></p>
+                        <br>
+                        <div id="line">
+                            <p>HDPE : <span id="total_hdpe">N/A</span></p>
+                            <p>LDPE : <span id="total_ldpe">N/A</span></p>
+                            <p>MB Putih : <span id="total_mbputih">N/A</span></p>
+                            <p>MB Biru : <span id="total_mbbiru">N/A</span></p>
+                        </div>
+                    </div>
+                </details>
+            </section>
+        </main>
+        <script>
+            // PERSENTAGE ======================================================
+            // Berat OK & Reject
+            const HDPE_PERCENTAGE = 63.680;
+            const LDPE_PERCENTAGE = 34.380;
+            const MB_PUTIH_PERCENTAGE = 1.480;
+            const MB_BIRU_PERCENTAGE = 0.460;
+            // Berat Lelehan Biru
+            const BLUE_HDPE_PERCENTAGE = 78.430;
+            const BLUE_LDPE_PERCENTAGE = 19.610;
+            const BLUE_MB_BIRU_PERCENTAGE = 1.960;
+            // Berat Putih (Cap & Lelehan)
+            const WHITE_HDPE_PERCENTAGE = 58.820;
+            const WHITE_LDPE_PERCENTAGE = 39.220;
+            const WHITE_MB_PUTIH_PERCENTAGE = 1.960;
+
+            // Satuan Pcs
+            var satuan_pcs = document.getElementById('satuan_pcs');
+            var berat_per_pcs = 10.663;
+
+            // DATA ============================================================
+            // ok
+            var ok_pcs_DATA = 0;
+            var ok_kg_DATA = 0;
+            var ok_hdpe_DATA = 0;
+            var ok_ldpe_DATA = 0;
+            var ok_mb_putih_DATA = 0;
+            var ok_mb_biru_DATA = 0;
+            // reject
+            var reject_pcs_DATA = 0;
+            var reject_kg_DATA = 0;
+            var reject_hdpe_DATA = 0;
+            var reject_ldpe_DATA = 0;
+            var reject_mb_putih_DATA = 0;
+            var reject_mb_biru_DATA = 0;
+            // blue
+            var blue_pcs_DATA = 0;
+            var blue_kg_DATA = 0;
+            var blue_hdpe_DATA = 0;
+            var blue_ldpe_DATA = 0;
+            var blue_mb_biru_DATA = 0;
+            // white
+            var white_pcs_DATA = 0;
+            var white_kg_DATA = 0;
+            var white_hdpe_DATA = 0;
+            var white_ldpe_DATA = 0;
+            var white_mb_putih_DATA = 0;
+
+            // DOCUMENT DECLARATIONS ==============================================
+            // ok
+            var ok_hdpe = document.getElementById('ok_hdpe');
+            var ok_ldpe = document.getElementById('ok_ldpe');
+            var ok_mbputih = document.getElementById('ok_mbputih');
+            var ok_mbbiru = document.getElementById('ok_mbbiru');
+
+            // FUNCTIONS =======================================================
+            function formatDecimal(value,isDecimal) {
+                return parseFloat((value).toFixed(isDecimal ? 3 : 0))
+            }
+            function pcsToKg(pcs, beratPerPcs) {
+                return formatDecimal(pcs * beratPerPcs / 1000,true)
+            }
+            function kgToPcs(kg, beratPerPcs) {
+                return formatDecimal(kg * 1000 / beratPerPcs,false)
+            }
+            function showData(value,element) {
+                if (element.tagName === 'INPUT') {
+                    element.value = value                    
+                } else {
+                    element.innerHTML = value                    
+                }
+            }
+            function calculateMaterial(kg,category) {
+                switch (category) {
+                    case 'ok':
+                        ok_hdpe_DATA = formatDecimal(kg * HDPE_PERCENTAGE / 100,true)
+                        ok_ldpe_DATA = formatDecimal(kg * LDPE_PERCENTAGE / 100,true)
+                        ok_mb_putih_DATA = formatDecimal(kg * MB_PUTIH_PERCENTAGE / 100,true)
+                        ok_mb_biru_DATA = formatDecimal(kg * MB_BIRU_PERCENTAGE / 100,true)
+                        showData(ok_hdpe_DATA,ok_hdpe)
+                        showData(ok_ldpe_DATA,ok_ldpe)
+                        showData(ok_mb_putih_DATA,ok_mbputih)
+                        showData(ok_mb_biru_DATA,ok_mbbiru)
+                        break;
+                    case 'reject':
+                        reject_hdpe_DATA = formatDecimal(kg * HDPE_PERCENTAGE / 100,true)
+                        reject_ldpe_DATA = formatDecimal(kg * LDPE_PERCENTAGE / 100,true)
+                        reject_mb_putih_DATA = formatDecimal(kg * MB_PUTIH_PERCENTAGE / 100,true)
+                        reject_mb_biru_DATA = formatDecimal(kg * MB_BIRU_PERCENTAGE / 100,true)
+                        break;
+                    case 'blue':
+                        blue_hdpe_DATA = formatDecimal(kg * HDPE_PERCENTAGE / 100,true)
+                        blue_ldpe_DATA = formatDecimal(kg * LDPE_PERCENTAGE / 100,true)
+                        blue_mb_biru_DATA = formatDecimal(kg * MB_BIRU_PERCENTAGE / 100,true)
+                        break;
+                    case 'white':
+                        white_hdpe_DATA = formatDecimal(kg * HDPE_PERCENTAGE / 100,true)
+                        white_ldpe_DATA = formatDecimal(kg * LDPE_PERCENTAGE / 100,true)
+                        white_mb_putih_DATA = formatDecimal(kg * MB_PUTIH_PERCENTAGE / 100,true)
+                        break;
+                
+                    default:
+                        console.log("Something wrong while calculating materials...")
+                        break;
+                }
+            }
+
+            // OK
+            let ok_pcs = document.getElementById('ok_pcs');
+            let ok_kg = document.getElementById('ok_kg');
+            ok_pcs.addEventListener('input', function(e) {
+                ok_pcs_DATA = e.target.value
+                ok_kg_DATA = pcsToKg(ok_pcs_DATA,berat_per_pcs)
+                showData(ok_kg_DATA,ok_kg)
+                calculateMaterial(ok_kg_DATA,'ok')
+            })
+            ok_kg.addEventListener('input', function(e) {
+                ok_kg_DATA = e.target.value
+                ok_pcs_DATA = kgToPcs(ok_kg_DATA,berat_per_pcs)
+                showData(ok_pcs_DATA,ok_pcs)
+                calculateMaterial(ok_kg_DATA,'ok')
+            })
+
+            // Reject
+            let reject_pcs = document.getElementById('reject_pcs');
+            let reject_kg = document.getElementById('reject_kg');
+            reject_pcs.addEventListener('input', function(e) {
+                updateValues(e.target.value,'pcs','kg',reject_kg);
+                updateRejectMaterial();
+                updateTotal();
+            })
+            reject_kg.addEventListener('input', function(e) {
+                updateValues(e.target.value,'kg','pcs',reject_pcs);
+                updateRejectMaterial();
+                updateTotal();
+            })
+            function updateRejectMaterial() {
+                let reject_kg = document.getElementById('reject_kg');
+                let reject_kg_value = reject_kg.tagName === 'INPUT' ? (reject_kg.value !== '' ? parseFloat(reject_kg.value) : 0) : (reject_kg.innerText !== 'N/A' ? parseFloat(reject_kg.innerText) : 0);
+                
+                let reject_hdpe = document.getElementById('reject_hdpe');
+                let reject_ldpe = document.getElementById('reject_ldpe');
+                let reject_mbputih = document.getElementById('reject_mbputih');
+                let reject_mbbiru = document.getElementById('reject_mbbiru');
+
+                let reject_hdpe_value = (reject_kg_value * HDPE_PERCENTAGE / 100).toFixed(3);
+                let reject_ldpe_value = (reject_kg_value * LDPE_PERCENTAGE / 100).toFixed(3);
+                let reject_mbputih_value = (reject_kg_value * MB_PUTIH_PERCENTAGE / 100).toFixed(3);
+                let reject_mbbiru_value = (reject_kg_value * MB_BIRU_PERCENTAGE / 100).toFixed(3);
+
+                reject_hdpe.innerHTML = reject_hdpe_value !== '0.000' ? reject_hdpe_value : "N/A";
+                reject_ldpe.innerHTML = reject_ldpe_value !== '0.000' ? reject_ldpe_value : "N/A";
+                reject_mbputih.innerHTML = reject_mbputih_value !== '0.000' ? reject_mbputih_value : "N/A";
+                reject_mbbiru.innerHTML = reject_mbbiru_value !== '0.000' ? reject_mbbiru_value : "N/A";
+            }
+            updateReject()
+
+            // Lelehan Biru
+            var blue_pcs2kg = document.getElementById('blue_pcs2kg');
+            var blue_kg2pcs = document.getElementById('blue_kg2pcs');
+            blue_pcs2kg.addEventListener('click', function() {
+                let blue_pcs = document.getElementById('blue_pcs');
+                let blue_kg = document.getElementById('blue_kg');
+                let blue_pcs_value = blue_pcs.tagName === 'INPUT' ? (blue_pcs.value !== '' ? blue_pcs.value : 'N/A') : (blue_pcs.innerText !== 'N/A' ? blue_pcs.innerText : '');
+                blue_pcs.outerHTML = '<input type="number" name="blue_pcs" id="blue_pcs" value="' + blue_pcs_value + '">';
+                blue_kg.outerHTML = '<span id="blue_kg">' + (blue_kg.value !== '' ? blue_kg.value : 'N/A') + '</span>';
+                this.disabled = true;
+                blue_kg2pcs.disabled = false;
+                updateBlue();
+            });
+            blue_kg2pcs.addEventListener('click', function() {
+                let blue_pcs = document.getElementById('blue_pcs');
+                let blue_kg = document.getElementById('blue_kg');
+                let blue_kg_value = blue_kg.tagName === 'INPUT' ? (blue_kg.value !== '' ? blue_kg.value : 'N/A') : (blue_kg.innerText !== 'N/A' ? blue_kg.innerText : '');
+                blue_kg.outerHTML = '<input type="number" name="blue_kg" id="blue_kg" value="' + blue_kg_value + '">';
+                blue_pcs.outerHTML = '<span id="blue_pcs">' + (blue_pcs.value !== '' ? blue_pcs.value : 'N/A') + '</span>';
+                this.disabled = true;
+                blue_pcs2kg.disabled = false;
+                updateBlue();
+            });
+
+            function updateBlue() {
+                let blue_pcs = document.getElementById('blue_pcs');
+                let blue_kg = document.getElementById('blue_kg');
+
+                if (blue_pcs.tagName === 'INPUT') {
+                    blue_pcs.addEventListener('input', function(e) {
+                        updateValues(e.target.value,'pcs','kg',blue_kg);
+                        updateBlueMaterial();
+                        updateTotal();
+                    });
+                } else if (blue_kg.tagName === 'INPUT') {
+                    blue_kg.addEventListener('input', function(e) {
+                        updateValues(e.target.value,'kg','pcs',blue_pcs);
+                        updateBlueMaterial();
+                        updateTotal();
+                    });
+                }
+            }
+            function updateBlueMaterial() {
+                let blue_kg = document.getElementById('blue_kg');
+                let blue_kg_value = blue_kg.tagName === 'INPUT' ? (blue_kg.value !== '' ? parseFloat(blue_kg.value) : 0) : (blue_kg.innerText !== 'N/A' ? parseFloat(blue_kg.innerText) : 0);
+                
+                let blue_hdpe = document.getElementById('blue_hdpe');
+                let blue_ldpe = document.getElementById('blue_ldpe');
+                let blue_mbbiru = document.getElementById('blue_mbbiru');
+
+                let blue_hdpe_value = (blue_kg_value * BLUE_HDPE_PERCENTAGE / 100).toFixed(3);
+                let blue_ldpe_value = (blue_kg_value * BLUE_LDPE_PERCENTAGE / 100).toFixed(3);
+                let blue_mbbiru_value = (blue_kg_value * BLUE_MB_BIRU_PERCENTAGE / 100).toFixed(3);
+
+                blue_hdpe.innerHTML = blue_hdpe_value !== '0.000' ? blue_hdpe_value : "N/A";
+                blue_ldpe.innerHTML = blue_ldpe_value !== '0.000' ? blue_ldpe_value : "N/A";
+                blue_mbbiru.innerHTML = blue_mbbiru_value !== '0.000' ? blue_mbbiru_value : "N/A";
+            }
+            updateBlue();
+
+            // Total
+            function updateTotal() {
+                // Pcs & Kg
+                let ok_pcs = document.getElementById('ok_pcs');
+                let ok_kg = document.getElementById('ok_kg');
+                let reject_pcs = document.getElementById('reject_pcs');
+                let reject_kg = document.getElementById('reject_kg');
+                let blue_pcs = document.getElementById('blue_pcs');
+                let blue_kg = document.getElementById('blue_kg');
+                
+                let total_pcs = document.getElementById('total_pcs');
+                let total_kg = document.getElementById('total_kg');
+                
+                let ok_pcs_value = ok_pcs_DATA/* ok_pcs.tagName === 'INPUT' 
+                ? (ok_pcs.value != '' ? parseFloat(ok_pcs.value) : 0) 
+                : (ok_pcs.innerText != 'N/A' ? parseFloat(ok_pcs.innerText) : 0); */
+                let ok_kg_value = ok_kg_DATA/* ok_kg.tagName === 'INPUT' 
+                ? (ok_kg.value != '' ? parseFloat(ok_kg.value) : 0) 
+                : (ok_kg.innerText != 'N/A' ? parseFloat(ok_kg.innerText) : 0); */
+                let reject_pcs_value = reject_pcs.tagName === 'INPUT' 
+                ? (reject_pcs.value != '' ? parseFloat(reject_pcs.value) : 0) 
+                : (reject_pcs.innerText != 'N/A' ? parseFloat(reject_pcs.innerText) : 0);
+                let reject_kg_value = reject_kg.tagName === 'INPUT' 
+                ? (reject_kg.value != '' ? parseFloat(reject_kg.value) : 0) 
+                : (reject_kg.innerText != 'N/A' ? parseFloat(reject_kg.innerText) : 0);
+                let blue_pcs_value = blue_pcs.tagName === 'INPUT' 
+                ? (blue_pcs.value != '' ? parseFloat(blue_pcs.value) : 0) 
+                : (blue_pcs.innerText != 'N/A' ? parseFloat(blue_pcs.innerText) : 0);
+                let blue_kg_value = blue_kg.tagName === 'INPUT' 
+                ? (blue_kg.value != '' ? parseFloat(blue_kg.value) : 0) 
+                : (blue_kg.innerText != 'N/A' ? parseFloat(blue_kg.innerText) : 0);
+                
+                let total_pcs_value = ok_pcs_value + reject_pcs_value + blue_pcs_value;
+                let total_kg_value = ok_kg_value + reject_kg_value + blue_kg_value;
+                console.log(total_kg_value)
+                // // console.log(ok_pcs.value,ok_pcs_value)
+                // // console.log(ok_kg.innerText,ok_kg_value)
+                // console.log(reject_pcs.innerText,reject_pcs_value)
+                // // console.log(reject_kg.value,reject_kg_value)
+                // console.log(blue_pcs.innerText,blue_pcs_value)
+                // console.log(blue_kg.value,blue_kg_value)
+                total_pcs.innerHTML = total_pcs_value !== 0 ? total_pcs_value : "N/A";
+                total_kg.innerHTML = total_kg_value !== 0 ? total_kg_value.toFixed(3) : "N/A";
+
+                // Materials
+                let ok_hdpe = document.getElementById('ok_hdpe');
+                let reject_hdpe = document.getElementById('reject_hdpe');
+                let total_hdpe = document.getElementById('total_hdpe');
+
+                let ok_ldpe = document.getElementById('ok_ldpe');
+                let reject_ldpe = document.getElementById('reject_ldpe');
+                let total_ldpe = document.getElementById('total_ldpe');
+
+                let ok_mbputih = document.getElementById('ok_mbputih');
+                let reject_mbputih = document.getElementById('reject_mbputih');
+                let total_mbputih = document.getElementById('total_mbputih');
+
+                let ok_mbbiru = document.getElementById('ok_mbbiru');
+                let reject_mbbiru = document.getElementById('reject_mbbiru');
+                let total_mbbiru = document.getElementById('total_mbbiru');
+
+                let total_hdpe_value = parseFloat(ok_hdpe.innerText !== 'N/A' ? ok_hdpe.innerText : 0) + parseFloat(reject_hdpe.innerText !== 'N/A' ? reject_hdpe.innerText : 0);
+                let total_ldpe_value = parseFloat(ok_ldpe.innerText !== 'N/A' ? ok_ldpe.innerText : 0) + parseFloat(reject_ldpe.innerText !== 'N/A' ? reject_ldpe.innerText : 0);
+                let total_mbputih_value = parseFloat(ok_mbputih.innerText !== 'N/A' ? ok_mbputih.innerText : 0) + parseFloat(reject_mbputih.innerText !== 'N/A' ? reject_mbputih.innerText : 0);
+                let total_mbbiru_value = parseFloat(ok_mbbiru.innerText !== 'N/A' ? ok_mbbiru.innerText : 0) + parseFloat(reject_mbbiru.innerText !== 'N/A' ? reject_mbbiru.innerText : 0);
+
+                total_hdpe.innerHTML = total_hdpe_value !== 0 ? total_hdpe_value.toFixed(3) : "N/A";
+                total_ldpe.innerHTML = total_ldpe_value !== 0 ? total_ldpe_value.toFixed(3) : "N/A";
+                total_mbputih.innerHTML = total_mbputih_value !== 0 ? total_mbputih_value.toFixed(3) : "N/A";
+                total_mbbiru.innerHTML = total_mbbiru_value !== 0 ? total_mbbiru_value.toFixed(3) : "N/A";
+            }
+
+        </script>
+    </body>
+</html>

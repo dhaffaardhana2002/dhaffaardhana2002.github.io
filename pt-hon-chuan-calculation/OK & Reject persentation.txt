@@ -1,0 +1,27 @@
+cmc09 OK & Reject:
+HDPE		63,720	%
+LDPE		34,319	%
+MB Putih	1,471	%
+MB Biru		0,490	%
+Biru:
+HDPE		78,431	%
+LDPE		19,608	%
+MB Biru		1,961	%
+White:
+HDPE		58,824	%
+LDPE		39,216	%
+MB Putih	1,961	%
+
+cmc08 OK & Reject:
+HDPE		63,680	%
+LDPE		34,380	%
+MB Putih	1,480	%
+MB Biru		0,460	%
+Biru:
+HDPE		78,430	%
+LDPE		19,610	%
+MB Biru		1,960	%
+White:
+HDPE		58,820	%
+LDPE		39,220	%
+MB Putih	1,960	%
